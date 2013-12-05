@@ -14,24 +14,43 @@
  * @package WordPress
  */
 
+/** Use different database credentials for local development server and online production server */
+if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
+    define('WP_ENV', 'development');
+} else {
+    define('WP_ENV', 'production');
+}
+
 // ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'database_name_here');
+if (WP_ENV == 'development') {
+    define('DB_NAME', 'wordpress');
+    define('DB_USER', 'wpadmin');
+    define('DB_PASSWORD', 'GjPN7BwU5RFbWyrH');
+    define('DB_HOST', 'localhost');
+} else {
+	/** The name of the database for WordPress */
+	define('DB_NAME', 'thdk_be');
+	/** MySQL database username */
+	define('DB_USER', 'thdk_be');
+	/** MySQL database password */
+	define('DB_PASSWORD', 'r67vnL5J');
+	/** MySQL hostname */
+	define('DB_HOST', 'thdk.be.mysql');
+} 
 
-/** MySQL database username */
-define('DB_USER', 'username_here');
 
-/** MySQL database password */
-define('DB_PASSWORD', 'password_here');
-
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+/** Add correct location for wordpress folders */
+define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress');
+define('WP_HOME', 'http://' . $_SERVER['SERVER_NAME']);
+define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
+define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
 
 /**#@+
  * Authentication Unique Keys and Salts.
