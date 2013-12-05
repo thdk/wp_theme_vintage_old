@@ -1,3 +1,3 @@
 # Wordpress themes
 
-Vintage Old
+1. Vintage Old
