@@ -15,7 +15,7 @@
  */
 
 /** Use different database credentials for local development server and online production server */
-if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
+if ($_SERVER['REMOTE_ADDR'] == '::1') {
     define('WP_ENV', 'development');
 } else {
     define('WP_ENV', 'production');
@@ -78,7 +78,7 @@ define('NONCE_SALT',       'put your unique phrase here');
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
+$table_prefix  = 'wp_cm_';
 
 /**
  * WordPress Localized Language, defaults to English.
@@ -97,7 +97,7 @@ define('WPLANG', '');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 
 /* That's all, stop editing! Happy blogging. */
 
