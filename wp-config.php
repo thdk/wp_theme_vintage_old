@@ -47,10 +47,10 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 /** Add correct location for wordpress folders */
-define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress');
-define('WP_HOME', 'http://' . $_SERVER['SERVER_NAME']);
+define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp/wordpress');
+define('WP_HOME', 'http://' . $_SERVER['SERVER_NAME'] . '/wp');
 define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
-define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
+define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp/wp-content');
 
 /**#@+
  * Authentication Unique Keys and Salts.
