@@ -412,8 +412,20 @@ function mts_wysiwyg_editor($mce_buttons) {
 
 /* THDK */
 
-function thdk_get_all_markers() {
+
+function thdk_get_all_markers() {	
 	global $wpdb;
-	return $wpdb->get_results("SELECT name, X(position) xpos, Y(position) ypos FROM ".$wpdb->prefix."marker");
+	return $wpdb->get_results("SELECT m.name, X(m.position) xpos, Y(m.position) ypos, mc.id catid, mc.name catname  FROM ".$wpdb->prefix."marker m JOIN ".$wpdb->prefix."markercategory mc 
+	ON m.category = mc.id order by mc.name");
+}
+
+function thdk_get_markers_by_categoryname($name) {
+	global $wpdb;
+	$query = 
+	"SELECT m.name, X(m.position) xpos, Y(m.position) ypos, mc.id catid, mc.name catname  
+	FROM ".$wpdb->prefix."marker m 
+	JOIN ".$wpdb->prefix."markercategory mc 
+	ON m.category = mc.id WHERE mc.name = '".$name."'";
+	return $wpdb->get_results($query);
 }
 ?>

@@ -10,6 +10,7 @@
 wp_enqueue_script('markers', get_stylesheet_directory_uri() . '/js/markers.js');
 
 $results = thdk_get_all_markers();
+$results2 = thdk_get_markers_by_categoryname("Museum");
 ?>  
 
 <script type="text/javascript">
@@ -36,14 +37,6 @@ height: 400px;
 							<div class="post-content box mark-links">
 								<?php the_content(); ?>
 								<div id="map-canvas"></div>
-								<!-- // if(!empty($results)) { 
-								//      foreach($results as $r) {	 
-								//           echo "<p>".$r->name.": ".$r->xpos." - ".$r->ypos."</p>";
-								//      }
-								// } else {
-								//      echo "<p>Boo, we couldn't find anything that is in all these groups. Try removing a category!</p>";	 	 
-								// }  -->
-
 								                               
 								<?php wp_link_pages(array('before' => '<div class="pagination">', 'after' => '</div>', 'link_before'  => '<span class="current"><span class="currenttext">', 'link_after' => '</span></span>', 'next_or_number' => 'next_and_number', 'nextpagelink' => __('Next','mythemeshop'), 'previouspagelink' => __('Previous','mythemeshop'), 'pagelink' => '%','echo' => 1 )); ?>
 							</div><!--.post-content box mark-links-->
@@ -53,5 +46,40 @@ height: 400px;
 				<?php endwhile; ?>
 			</div>
 		</article>
-		<?php get_sidebar(); ?>
+		<aside class="sidebar c-4-12">
+			<div class="sidebar">
+
+				<?php 
+				
+					if(!empty($results)) { 
+						$category ="";?>
+						<ul>
+							<li>
+						<?php
+							$numItems = count($arr);
+							$i = 0;
+					     foreach($results as $r) {	
+					     	if ($catname == "") 
+					     	{
+					     		echo "<h2>".$r->catname."</h2><ul>";
+					     		$catname = $r->catname;
+
+							}
+							if ($catname != $r->catname) {
+								echo "</ul><h2>".$r->catname."</h2><ul>";
+								$catname = $r->catname;
+							}
+					     	 
+					          echo "<li>".$r->name."</li>";
+
+					          if(++$i === $numItems) {
+							    echo "</ul>!";
+							  }
+					     }
+					     echo "</li></ul>";					     
+					}
+				?>
+			</div>
+		</aside>
+		
 <?php get_footer(); ?>
