@@ -409,4 +409,11 @@ function mts_wysiwyg_editor($mce_buttons) {
    return $mce_buttons;
 }
 
+
+/* THDK */
+
+function thdk_get_all_markers() {
+	global $wpdb;
+	return $wpdb->get_results("SELECT name, X(position) xpos, Y(position) ypos FROM ".$wpdb->prefix."marker");
+}
 ?>
